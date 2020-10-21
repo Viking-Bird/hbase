@@ -39,7 +39,7 @@
   <groupId>org.apache.hbase</groupId>
   <artifactId>hbase</artifactId>
   <packaging>pom</packaging>
-  <version>0.98.24</version>
+  <version>0.98.24-hadoop2</version>
   <name>Apache HBase</name>
   <description>
     Apache HBase is the Hadoop database. Use it when you need
@@ -61,22 +61,22 @@
   </licenses>
 
   <modules>
-    <module>hbase-resource-bundle</module>
-    <module>hbase-server</module>
-    <module>hbase-thrift</module>
-    <module>hbase-rest</module>
-    <module>hbase-shell</module>
-    <module>hbase-protocol</module>
-    <module>hbase-client</module>
-    <module>hbase-hadoop-compat</module>
-    <module>hbase-common</module>
-    <module>hbase-it</module>
-    <module>hbase-examples</module>
-    <module>hbase-prefix-tree</module>
-    <module>hbase-assembly</module>
-    <module>hbase-testing-util</module>
-    <module>hbase-annotations</module>
-    <module>hbase-checkstyle</module>
+    <module>hbase-resource-bundle/pom.xml.hadoop2</module>
+    <module>hbase-server/pom.xml.hadoop2</module>
+    <module>hbase-thrift/pom.xml.hadoop2</module>
+    <module>hbase-rest/pom.xml.hadoop2</module>
+    <module>hbase-shell/pom.xml.hadoop2</module>
+    <module>hbase-protocol/pom.xml.hadoop2</module>
+    <module>hbase-client/pom.xml.hadoop2</module>
+    <module>hbase-hadoop-compat/pom.xml.hadoop2</module>
+    <module>hbase-common/pom.xml.hadoop2</module>
+    <module>hbase-it/pom.xml.hadoop2</module>
+    <module>hbase-examples/pom.xml.hadoop2</module>
+    <module>hbase-prefix-tree/pom.xml.hadoop2</module>
+    <module>hbase-assembly/pom.xml.hadoop2</module>
+    <module>hbase-testing-util/pom.xml.hadoop2</module>
+    <module>hbase-annotations/pom.xml.hadoop2</module>
+    <module>hbase-checkstyle/pom.xml.hadoop2</module>
   </modules>
   <scm>
     <connection>scm:svn:http://svn.apache.org/repos/asf/hbase/trunk</connection>
@@ -471,7 +471,7 @@
               -->
             <arguments>-Dmaven.test.skip.exec</arguments>
             <goals>${goals}</goals>
-            <pomFileName>pom.xml</pomFileName>
+            <pomFileName>${nupom}</pomFileName>
           </configuration>
         </plugin>
         <plugin>
@@ -1255,12 +1255,12 @@
       </dependency>
       <dependency>
         <groupId>org.apache.hbase</groupId>
-        <artifactId>${compat.module}</artifactId>
+        <artifactId>hbase-hadoop2-compat</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.hbase</groupId>
-        <artifactId>${compat.module}</artifactId>
+        <artifactId>hbase-hadoop2-compat</artifactId>
         <version>${project.version}</version>
         <type>test-jar</type>
         <scope>test</scope>
@@ -1828,12 +1828,11 @@
       <id>hadoop-1.1</id>
       <activation>
         <property>
-            <!--Below formatting for dev-support/generate-hadoopX-poms.sh-->
-            <!--h1--><name>hadoop.profile</name><value>1.1</value>
+            <name>hadoop.profile</name><value>1.1</value>
         </property>
       </activation>
       <modules>
-        <module>hbase-hadoop1-compat</module>
+        <module>hbase-hadoop1-compat/pom.xml.hadoop2</module>
       </modules>
       <properties>
         <hadoop.version>${hadoop-one.version}</hadoop.version>
@@ -1887,12 +1886,11 @@
       <id>hadoop-2.0</id>
       <activation>
         <property>
-            <!--Below formatting for dev-support/generate-hadoopX-poms.sh-->
-            <!--h2--><name>!hadoop.profile</name>
+            <name>!hadoop.profile</name>
         </property>
       </activation>
       <modules>
-        <module>hbase-hadoop2-compat</module>
+        <module>hbase-hadoop2-compat/pom.xml.hadoop2</module>
       </modules>
       <properties>
         <hadoop.version>${hadoop-two.version}</hadoop.version>
